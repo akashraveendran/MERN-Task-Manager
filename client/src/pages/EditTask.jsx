@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import SideBar from '../components/SideBar'
 import axios from "axios";
+import { BASE_URL } from '../api/Api';
 
 
 
@@ -21,7 +22,7 @@ function EditTask() {
             difficulty
         }
         console.log(updatedTask)
-        await axios.patch("http://localhost:5000/api/tasks/" + location.state.taskID, updatedTask)
+        await axios.patch(BASE_URL + location.state.taskID, updatedTask)
         navigate("/all-tasks")
     }
 

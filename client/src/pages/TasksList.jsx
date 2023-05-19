@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Singletask from '../components/Singletask'
 import SideBar from '../components/SideBar'
 import axios from "axios"
+import { BASE_URL } from '../api/Api';
 
 
 
 function TasksList() {
     const [taskList, setTaskList] = useState();
     const fetchAllTasks = async function () {
-        let { data } = await axios.get('http://localhost:5000/api/tasks') //destruscturing response from the axios request and getting data
+        let { data } = await axios.get(BASE_URL) //destruscturing response from the axios request and getting data
         // console.log(data.tasks);
         setTaskList(data.tasks)
     }

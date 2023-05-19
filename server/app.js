@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 require("dotenv").config()
 const connectDB = require("./db/connection")
+const cors = require("cors")
 
 //Routes
 const taskRouter = require("./routes/task")
@@ -10,6 +11,7 @@ const taskRouter = require("./routes/task")
 //middlewares
 app.use(express.static('./public'))
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }))
 app.use('/api/v1/tasks', taskRouter)
 

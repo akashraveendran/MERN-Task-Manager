@@ -8,6 +8,7 @@ import { styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { BASE_URL } from '../api/Api';
 
 
 const CustomCard = styled(Card)`
@@ -21,13 +22,13 @@ function Singletask(props) {
         navigate('/edit-task', { state: props.data })
     }
     const deleteTask = async () => {
-        let response = await axios.delete(`http://localhost:5000/api/tasks/${props.data.taskID}`)
+        let response = await axios.delete(`${BASE_URL}/${props.data.taskID}`)
         console.log(response)
         window.location.reload()
     }
     const completed = async () => {
         let updatedStatus = { status: "completed" };
-        await axios.patch(`http://localhost:5000/api/tasks/${props.data.taskID}`, updatedStatus)
+        await axios.patch(`${BASE_URL}/${props.data.taskID}`, updatedStatus)
         window.location.reload()
     }
     return (

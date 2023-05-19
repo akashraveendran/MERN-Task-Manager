@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 import SideBar from '../components/SideBar'
+import { BASE_URL } from "../api/Api"
 
 
 
@@ -23,7 +24,7 @@ function AddTask() {
             dueDate: dateRef.current.value
         }
         // console.log(task)
-        await axios.post("http://localhost:5000/api/tasks", task)
+        await axios.post(BASE_URL, task)
         navigate("/all-tasks")
     }
     return (

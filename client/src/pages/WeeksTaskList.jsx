@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Singletask from '../components/Singletask'
 import SideBar from '../components/SideBar'
+import { BASE_URL } from '../api/Api';
 
 
 function WeeksTaskList() {
     const [taskList, setTaskList] = useState();
     const fetchAllTasks = async function () {
         //destruscturing response from the axios request and getting data
-        let { data } = await axios.get('http://localhost:5000/api/tasks')
+        let { data } = await axios.get(BASE_URL)
         console.log(data.tasks);
         const todayObj = new Date();
         const todayDate = todayObj.getDate();
