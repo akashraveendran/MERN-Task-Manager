@@ -1,6 +1,6 @@
 # MERN-Task-Manager
 
-###A simple Task manager app using ReactJS,ExpressJS and MongoDB
+### A simple Task manager app using ReactJS,ExpressJS and MongoDB
 
 
 site live @ [here](https://glistening-lamington-682dc8.netlify.app)
