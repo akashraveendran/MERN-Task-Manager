@@ -22,13 +22,13 @@ function Singletask(props) {
         navigate('/edit-task', { state: props.data })
     }
     const deleteTask = async () => {
-        let response = await axios.delete(`${BASE_URL}/${props.data.taskID}`)
+        let response = await axios.delete(`${BASE_URL}/${props.data._id}`)
         console.log(response)
         window.location.reload()
     }
     const completed = async () => {
-        let updatedStatus = { status: "completed" };
-        await axios.patch(`${BASE_URL}/${props.data.taskID}`, updatedStatus)
+        let updatedStatus = { completed: true };
+        await axios.patch(`${BASE_URL}/${props.data._id}`, updatedStatus)
         window.location.reload()
     }
     return (
@@ -38,7 +38,7 @@ function Singletask(props) {
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                         {props.data.dueDate}
                     </Typography>
-                    <Button variant="contained" color="success" onClick={completed}>mark as Completed</Button>
+                    {props.data.completed ? <Typography sx={{ fontSize: 16, color: "green", fontWeight: "700" }} gutterBottom>Completed</Typography> : <Button variant="contained" color="success" onClick={completed}>mark as Completed</Button>}
                 </Box>
                 <Typography variant="h5" component="div">
                     {props.data.taskName}
@@ -50,10 +50,14 @@ function Singletask(props) {
                     {props.data.description}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button variant='contained' size="small" onClick={editTask}>Edit</Button>
-                <Button variant="contained" color='error' size="small" onClick={deleteTask}>Delete</Button>
-            </CardActions>
+            {
+                !props.data.completed
+                &&
+                <CardActions>
+                    <Button variant='contained' size="small" onClick={editTask}>Edit</Button>
+                    <Button variant="contained" color='error' size="small" onClick={deleteTask}>Delete</Button>
+                </CardActions>
+            }
         </CustomCard>
     )
 }

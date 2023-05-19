@@ -22,7 +22,7 @@ function EditTask() {
             difficulty
         }
         console.log(updatedTask)
-        await axios.patch(BASE_URL + location.state.taskID, updatedTask)
+        await axios.patch(`${BASE_URL}/${location.state._id}`, updatedTask)
         navigate("/all-tasks")
     }
 
